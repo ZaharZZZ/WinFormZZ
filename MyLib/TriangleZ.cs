@@ -6,13 +6,13 @@ using System.Threading.Tasks;
 
 namespace MyLib
 {
-    public class Triangle
+    public class TriangleZ
     {
         public double SideA { get; set; }
         public double SideB { get; set; }
         public double SideC { get; set; }
 
-        public Triangle(double sideA, double sideB, double sideC)
+        public TriangleZ(double sideA, double sideB, double sideC)
         {
             if (!IsValidTriangle(sideA, sideB, sideC))
             {
