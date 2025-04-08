@@ -11,9 +11,10 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using static System.Windows.Forms.MonthCalendar;
 
+
 namespace WinFormZZ
 {
-    public partial class Form1: Form
+    public partial class Form1 : Form
     {
         private GeometricFigure currentFigure;
         public Form1()
@@ -31,7 +32,7 @@ namespace WinFormZZ
 
         public static class FileManager
         {
-            public static void SaveToFile(string content, string defaultFileName = "geometric_calculations.txt")
+            public static void SaveToFile(string content, string defaultFileName)
             {
                 try
                 {
@@ -40,24 +41,18 @@ namespace WinFormZZ
                         saveFileDialog.Filter = "Текстовые файлы (*.txt)|*.txt|Все файлы (*.*)|*.*";
                         saveFileDialog.FilterIndex = 1;
                         saveFileDialog.RestoreDirectory = true;
-                        saveFileDialog.FileName = defaultFileName;
+                        saveFileDialog.FileName = "geometric_calculations";
 
                         if (saveFileDialog.ShowDialog() == DialogResult.OK)
                         {
                             File.AppendAllText(saveFileDialog.FileName, content + Environment.NewLine + Environment.NewLine);
-                            MessageBox.Show($"Файл успешно сохранен:\n{saveFileDialog.FileName}",
-                                            "Успех",
-                                            MessageBoxButtons.OK,
-                                            MessageBoxIcon.Information);
+                            MessageBox.Show($"Файл успешно сохранен:\n{saveFileDialog.FileName}", "Успех", MessageBoxButtons.OK, MessageBoxIcon.Information);
                         }
                     }
                 }
                 catch (Exception ex)
                 {
-                    MessageBox.Show($"Ошибка при сохранении файла: {ex.Message}",
-                                  "Ошибка",
-                                  MessageBoxButtons.OK,
-                                  MessageBoxIcon.Error);
+                    MessageBox.Show($"Ошибка при сохранении файла: {ex.Message}", "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
             }
         }
@@ -150,8 +145,37 @@ namespace WinFormZZ
                 double area = currentFigure.CalculateArea();
                 double perimeter = currentFigure.CalculatePerimeter();
 
-                txtArea.Text = area.ToString("F2");
-                txtPerimeter.Text = perimeter.ToString("F2");
+                string formulaArea = "";
+                string formulaPerimeter = "";
+
+                switch (cmbFigureType.SelectedItem.ToString())
+                {
+                    case "Круг":
+                        formulaArea = $"Площадь круга = π * r^2\n"+ $" π * {txtParam1.Text}^2 = {area:F2}";
+                        formulaPerimeter = $"Периметр круга = 2 * π * r = 2 * π * {txtParam1.Text} = {perimeter:F2}";
+                        break;
+                    case "Прямоугольник":
+                        formulaArea = $"Площадь прямоугольника = ширина * высота = {txtParam1.Text} * {txtParam2.Text} = {area:F2}";
+                        formulaPerimeter = $"Периметр прямоугольника = 2 * (ширина + высота) = 2 * ({txtParam1.Text} + {txtParam2.Text}) = {perimeter:F2}";
+                        break;
+                    case "Треугольник":
+                        formulaArea = $"Площадь треугольника (по формуле Герона) = √(p * (p - a) * (p - b) * (p - c)) = {area:F2}"; // Уточните формулу
+                        formulaPerimeter = $"Периметр треугольника = a + b + c = {txtParam1.Text} + {txtParam2.Text} + {txtParam3.Text} = {perimeter:F2}";
+                        break;
+                    case "Квадрат":
+                        formulaArea = $"Площадь квадрата = сторона^2 = {txtParam1.Text}^2 = {area:F2}";
+                        formulaPerimeter = $"Периметр квадрата = 4 * сторона = 4 * {txtParam1.Text} = {perimeter:F2}";
+                        break;
+                    default:
+                        formulaArea = "Площадь не может быть вычислена.";
+                        formulaPerimeter = "Периметр не может быть вычислен.";
+                        break;
+                }
+
+                rtxtArea.Text = formulaArea;
+                rtxtPerimeter.Text = formulaPerimeter;
+                
+                
 
                 // Активируем кнопку сохранения
                 btnSave.Enabled = true;
@@ -177,11 +201,11 @@ namespace WinFormZZ
                 string content = $"Фигура: {currentFigure.Name}\n" +
                                 $"Формула площади: {currentFigure.AreaFormula}\n" +
                                 $"Формула периметра: {currentFigure.PerimeterFormula}\n" +
-                                $"Площадь: {txtArea.Text}\n" +
-                                $"Периметр: {txtPerimeter.Text}\n" +
-                                $"Дата расчета: {DateTime.Now}";
+                                $"Площадь: {rtxtArea.Text}\n" +
+                                $"Периметр: {rtxtPerimeter.Text}\n";
 
-                FileManager.SaveToFile(savePath, content);
+
+                FileManager.SaveToFile(content, savePath);
                 MessageBox.Show("Результаты успешно сохранены в файл!", "Успех", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
             catch (Exception ex)
@@ -190,4 +214,4 @@ namespace WinFormZZ
             }
         }
     }
-}
+    }
