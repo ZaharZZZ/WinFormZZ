@@ -44,8 +44,8 @@
     <Compile Include="GeometricFigure.cs" />
     <Compile Include="FileManager.cs" />
     <Compile Include="GeometryCalculator.cs" />
-    <Compile Include="TriangleZ.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="TrianglFeatures.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
