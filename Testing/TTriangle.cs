@@ -11,7 +11,7 @@ namespace Testing
         public void CalculatePerimeter_ValidTriangle_ReturnsCorrectPerimeter()
         {
             // Arrange
-            Triangle triangle = new Triangle(3, 4, 5);
+            TriangleZ triangle = new TriangleZ(3, 4, 5);
             double expectedPerimeter = 12;
 
             // Act
@@ -25,7 +25,7 @@ namespace Testing
         public void CalculateArea_ValidTriangle_ReturnsCorrectArea()
         {
             // Arrange
-            Triangle triangle = new Triangle(3, 4, 5);
+            TriangleZ triangle = new TriangleZ(3, 4, 5);
             double expectedArea = 6;
 
             // Act
@@ -38,7 +38,7 @@ namespace Testing
         
         public void Triangle_ZeroSide_ThrowsArgumentException()
         {
-            new Triangle(0, 4, 5); 
+            new TriangleZ(0, 4, 5); 
         }
     }
 }

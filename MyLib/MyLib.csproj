@@ -41,7 +41,10 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Triangle.cs" />
+    <Compile Include="GeometricFigure.cs" />
+    <Compile Include="FileManager.cs" />
+    <Compile Include="GeometryCalculator.cs" />
+    <Compile Include="TriangleZ.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
