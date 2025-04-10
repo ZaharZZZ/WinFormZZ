@@ -86,23 +86,34 @@ namespace WinFormZZ
 
             switch (cmbFigureType.SelectedItem.ToString())
             {
+                case "Круг":
+                    lblParam1.Text = "Радиус:";
+                    txtParam1.Clear();
+                    break;
                 case "Прямоугольник":
                     lblParam1.Text = "Ширина:";
                     lblParam2.Text = "Высота:";
                     txtParam2.Visible = true;
+                    txtParam1.Clear();
+                    txtParam2.Clear();
                     lblParam2.Visible = true;
                     break;
                 case "Треугольник":
+
                     lblParam1.Text = "Сторона A:";
                     lblParam2.Text = "Сторона B:";
                     lblParam3.Text = "Сторона C:";
                     txtParam2.Visible = true;
+                    txtParam1.Clear();
+                    txtParam2.Clear();
+                    txtParam3.Clear();
                     txtParam3.Visible = true;
                     lblParam2.Visible = true;
                     lblParam3.Visible = true;
                     break;
                 case "Квадрат":
                     lblParam1.Text = "Сторона:";
+                    txtParam1.Clear();
                     break;
             }
 
