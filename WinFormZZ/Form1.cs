@@ -46,7 +46,7 @@ namespace WinFormZZ
                         if (saveFileDialog.ShowDialog() == DialogResult.OK)
                         {
                             File.AppendAllText(saveFileDialog.FileName, content + Environment.NewLine + Environment.NewLine);
-                            MessageBox.Show($"Файл успешно сохранен:\n{saveFileDialog.FileName}", "Успех", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                            MessageBox.Show($"Результаты успешно сохранены в файл! Файл сохранен:\n{saveFileDialog.FileName}", "Успех", MessageBoxButtons.OK, MessageBoxIcon.Information);
                         }
                     }
                 }
@@ -57,7 +57,7 @@ namespace WinFormZZ
             }
         }
 
-        private string GetFigureParameters()
+        /*private string GetFigureParameters()
         {
             switch (currentFigure)
             {
@@ -72,7 +72,7 @@ namespace WinFormZZ
                 default:
                     return "Неизвестные параметры";
             }
-        }
+        }*/
 
         private void cmbFigureType_SelectedIndexChanged(object sender, EventArgs e)
         {
@@ -144,27 +144,34 @@ namespace WinFormZZ
                 currentFigure = CreateFigure();
                 double area = currentFigure.CalculateArea();
                 double perimeter = currentFigure.CalculatePerimeter();
-
                 string formulaArea = "";
                 string formulaPerimeter = "";
 
                 switch (cmbFigureType.SelectedItem.ToString())
                 {
                     case "Круг":
-                        formulaArea = $"Площадь круга = π * r^2\n"+ $" π * {txtParam1.Text}^2 = {area:F2}";
-                        formulaPerimeter = $"Периметр круга = 2 * π * r = 2 * π * {txtParam1.Text} = {perimeter:F2}";
+                        formulaArea = $"Площадь круга = π * r^2\nПлощадь круга = π * {txtParam1.Text}^2 = {area:F2}";
+                        formulaPerimeter = $"Периметр круга = 2 * π * r\nПериметр круга = 2 * π * {txtParam1.Text} = {perimeter:F2}";
                         break;
                     case "Прямоугольник":
-                        formulaArea = $"Площадь прямоугольника = ширина * высота = {txtParam1.Text} * {txtParam2.Text} = {area:F2}";
-                        formulaPerimeter = $"Периметр прямоугольника = 2 * (ширина + высота) = 2 * ({txtParam1.Text} + {txtParam2.Text}) = {perimeter:F2}";
+                        formulaArea = $"Площадь прямоугольника = ширина * высота\nПлощадь прямоугольника = {txtParam1.Text} * {txtParam2.Text} = {area:F2}";
+                        formulaPerimeter = $"Периметр прямоугольника = 2 * (ширина + высота)\nПериметр прямоугольника = 2 * ({txtParam1.Text} + {txtParam2.Text}) = {perimeter:F2}";
                         break;
+
                     case "Треугольник":
-                        formulaArea = $"Площадь треугольника (по формуле Герона) = √(p * (p - a) * (p - b) * (p - c)) = {area:F2}"; // Уточните формулу
-                        formulaPerimeter = $"Периметр треугольника = a + b + c = {txtParam1.Text} + {txtParam2.Text} + {txtParam3.Text} = {perimeter:F2}";
+
+                        double a = double.Parse(txtParam1.Text);
+                        double b = double.Parse(txtParam2.Text);
+                        double c = double.Parse(txtParam3.Text);
+                        double p = (a + b + c) / 2.0;
+
+                        formulaArea += $"Площадь треугольника (по формуле Герона) = √(p * (p - a) * (p - b) * (p - c))\nПолупериметр p = ({txtParam1.Text} + {txtParam2.Text} + {txtParam3.Text}) / 2 = {p:F2}\n" +
+                            $"Площадь треугольника = √({p:F2} * ({p:F2} - {txtParam1.Text}) * ({p:F2} - {txtParam2.Text}) * ({p:F2} - {txtParam3.Text})) = {area:F2}"; 
+                        formulaPerimeter = $"Периметр треугольника = a + b + c\nПериметр треугольника = {txtParam1.Text} + {txtParam2.Text} + {txtParam3.Text} = {perimeter:F2}";
                         break;
                     case "Квадрат":
-                        formulaArea = $"Площадь квадрата = сторона^2 = {txtParam1.Text}^2 = {area:F2}";
-                        formulaPerimeter = $"Периметр квадрата = 4 * сторона = 4 * {txtParam1.Text} = {perimeter:F2}";
+                        formulaArea = $"Площадь квадрата = сторона^2\nПлощадь квадрата = {txtParam1.Text}^2 = {area:F2}";
+                        formulaPerimeter = $"Периметр квадрата = 4 * сторона\nПериметр квадрата = 4 * {txtParam1.Text} = {perimeter:F2}";
                         break;
                     default:
                         formulaArea = "Площадь не может быть вычислена.";
@@ -206,7 +213,7 @@ namespace WinFormZZ
 
 
                 FileManager.SaveToFile(content, savePath);
-                MessageBox.Show("Результаты успешно сохранены в файл!", "Успех", MessageBoxButtons.OK, MessageBoxIcon.Information);
+               
             }
             catch (Exception ex)
             {
