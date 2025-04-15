@@ -8,37 +8,20 @@ namespace Testing
     public class TTriangle
     {
         [TestMethod]
-        public void CalculatePerimeter_ValidTriangle_ReturnsCorrectPerimeter()
+        [DataRow(3, 4, 5, true, DisplayName = "Допустимый треугольник")]
+        [DataRow(1, 1, 3, false, DisplayName = "Недопустимый треугольник - Сумма меньше чем сторона")]
+        [DataRow(0, 1, 1, false, DisplayName = "Недопустимый треугольник - Сторона с длинной 0")]
+        [DataRow(-1, 1, 1, false, DisplayName = "Недопустимый треугольник - Отрицательное значение стороны")]
+        public void TriangleExists_WithDataRows(double a, double b, double c, bool expected)
         {
             // Arrange
-            TriangleZ triangle = new TriangleZ(3, 4, 5);
-            double expectedPerimeter = 12;
+            Triangle triangle = new Triangle(a, b, c);
 
             // Act
-            double actualPerimeter = triangle.CalculatePerimeter();
+            bool actual = triangle.Exists();
 
             // Assert
-            Assert.AreEqual(expectedPerimeter, actualPerimeter);
-        }
-
-        [TestMethod]
-        public void CalculateArea_ValidTriangle_ReturnsCorrectArea()
-        {
-            // Arrange
-            TriangleZ triangle = new TriangleZ(3, 4, 5);
-            double expectedArea = 6;
-
-            // Act
-            double actualArea = triangle.CalculateArea();
-
-            // Assert
-            Assert.AreEqual(expectedArea, actualArea, 0.001);
-        }
-        [TestMethod]
-        
-        public void Triangle_ZeroSide_ThrowsArgumentException()
-        {
-            new TriangleZ(0, 4, 5); 
+            Assert.AreEqual(expected, actual);
         }
     }
 }
