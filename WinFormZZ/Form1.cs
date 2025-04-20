@@ -32,6 +32,7 @@ namespace WinFormZZ
 
         private void cmbFigureType_SelectedIndexChanged(object sender, EventArgs e)
         {
+
             ShowFigureControl(cmbFigureType.SelectedItem.ToString());
         }
 
