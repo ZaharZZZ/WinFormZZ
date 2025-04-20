@@ -29,7 +29,12 @@ namespace MyLib
             {
                 return 2 * Math.PI * Radius;
             }
-        }
+
+            public override string GetAreaInfo() => $"{base.GetAreaInfo()}\nπ × {Radius}² = {CalculateArea():F2}";
+
+            public override string GetPerimeterInfo() => $"{base.GetPerimeterInfo()}\n2 × π × {Radius} = {CalculatePerimeter():F2}";
+
+    }
 
         public class RectangleZ : GeometricFigure
         {
@@ -54,7 +59,14 @@ namespace MyLib
             {
                 return 2 * (Width + Height);
             }
-        }
+
+
+        public override string GetAreaInfo() =>
+$"{base.GetAreaInfo()}\n{Width} × {Height} = {CalculateArea():F2}";
+
+        public override string GetPerimeterInfo() =>
+            $"{base.GetPerimeterInfo()}\n2 × ({Width} + {Height}) = {CalculatePerimeter():F2}";
+    }
 
         public class Triangle1X : GeometricFigure
         {
@@ -82,7 +94,17 @@ namespace MyLib
             {
                 return SideA + SideB + SideC;
             }
+
+        public override string GetAreaInfo()
+        {
+            double p = (SideA + SideB + SideC) / 2;
+            return $"{base.GetAreaInfo()}\nПолупериметр p = ({SideA} + {SideB} + {SideC}) / 2 = {p:F2}\n" +
+                   $"√({p:F2}×({p:F2}-{SideA})×({p:F2}-{SideB})×({p:F2}-{SideC})) = {CalculateArea():F2}";
         }
+
+        public override string GetPerimeterInfo() =>
+            $"{base.GetPerimeterInfo()}\n{SideA} + {SideB} + {SideC} = {CalculatePerimeter():F2}";
+    }
 
         public class Square : GeometricFigure
         {
@@ -105,5 +127,11 @@ namespace MyLib
             {
                 return 4 * Side;
             }
-        }
+
+        public override string GetAreaInfo() =>
+    $"{base.GetAreaInfo()}\n{Side}² = {CalculateArea():F2}";
+
+        public override string GetPerimeterInfo() =>
+            $"{base.GetPerimeterInfo()}\n4 × {Side} = {CalculatePerimeter():F2}";
+    }
 }

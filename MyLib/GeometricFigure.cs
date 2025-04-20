@@ -19,5 +19,7 @@ namespace MyLib
         {
             return $"{Name}\nПлощадь: {AreaFormula}\nПериметр: {PerimeterFormula}";
         }
+        public virtual string GetAreaInfo() => $"{Name}\nФормула площади: {AreaFormula}\nРезультат: {CalculateArea():F2}";
+        public virtual string GetPerimeterInfo() => $"{Name}\nФормула периметра: {PerimeterFormula}\nРезультат: {CalculatePerimeter():F2}";
     }
 }

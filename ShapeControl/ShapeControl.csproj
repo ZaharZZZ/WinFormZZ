@@ -4,17 +4,15 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{6AF102F0-B675-48F7-B4B4-D713AB73BF8D}</ProjectGuid>
-    <OutputType>WinExe</OutputType>
-    <RootNamespace>WinFormZZ</RootNamespace>
-    <AssemblyName>WinFormZZ</AssemblyName>
+    <ProjectGuid>{3FD4A371-4EA5-4CE5-8EB8-8D10CA28EFFB}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <RootNamespace>ShapeControl</RootNamespace>
+    <AssemblyName>ShapeControl</AssemblyName>
     <TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
-    <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
     <Deterministic>true</Deterministic>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
-    <PlatformTarget>AnyCPU</PlatformTarget>
     <DebugSymbols>true</DebugSymbols>
     <DebugType>full</DebugType>
     <Optimize>false</Optimize>
@@ -24,7 +22,6 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
-    <PlatformTarget>AnyCPU</PlatformTarget>
     <DebugType>pdbonly</DebugType>
     <Optimize>true</Optimize>
     <OutputPath>bin\Release\</OutputPath>
@@ -39,55 +36,58 @@
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="System.Data" />
-    <Reference Include="System.Deployment" />
     <Reference Include="System.Drawing" />
     <Reference Include="System.Net.Http" />
     <Reference Include="System.Windows.Forms" />
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Form1.cs">
-      <SubType>Form</SubType>
+    <Compile Include="CircleControl .cs">
+      <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="Form1.Designer.cs">
-      <DependentUpon>Form1.cs</DependentUpon>
+    <Compile Include="CircleControl .Designer.cs">
+      <DependentUpon>CircleControl .cs</DependentUpon>
     </Compile>
-    <Compile Include="Program.cs" />
+    <Compile Include="RectangleControl .cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="RectangleControl .Designer.cs">
+      <DependentUpon>RectangleControl .cs</DependentUpon>
+    </Compile>
+    <Compile Include="SquareControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="SquareControl.Designer.cs">
+      <DependentUpon>SquareControl.cs</DependentUpon>
+    </Compile>
+    <Compile Include="TriangleControl .cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="TriangleControl .Designer.cs">
+      <DependentUpon>TriangleControl .cs</DependentUpon>
+    </Compile>
+    <Compile Include="UserControl1.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="UserControl1.Designer.cs">
+      <DependentUpon>UserControl1.cs</DependentUpon>
+    </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <EmbeddedResource Include="Form1.resx">
-      <DependentUpon>Form1.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Properties\Resources.resx">
-      <Generator>ResXFileCodeGenerator</Generator>
-      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
-      <SubType>Designer</SubType>
-    </EmbeddedResource>
-    <Compile Include="Properties\Resources.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DependentUpon>Resources.resx</DependentUpon>
-    </Compile>
-    <None Include="Properties\Settings.settings">
-      <Generator>SettingsSingleFileGenerator</Generator>
-      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
-    </None>
-    <Compile Include="Properties\Settings.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DependentUpon>Settings.settings</DependentUpon>
-      <DesignTimeSharedInput>True</DesignTimeSharedInput>
-    </Compile>
+    <Service Include="{94E38DFF-614B-4cbd-B67C-F211BB35CE8B}" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="App.config" />
-  </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\MyLib\MyLib.csproj">
-      <Project>{031ffa09-95fb-4b5d-b187-ed1d8ca21945}</Project>
-      <Name>MyLib</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\ShapeControl\ShapeControl.csproj">
-      <Project>{3fd4a371-4ea5-4ce5-8eb8-8d10ca28effb}</Project>
-      <Name>ShapeControl</Name>
-    </ProjectReference>
+    <EmbeddedResource Include="CircleControl .resx">
+      <DependentUpon>CircleControl .cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="RectangleControl .resx">
+      <DependentUpon>RectangleControl .cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="SquareControl.resx">
+      <DependentUpon>SquareControl.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="TriangleControl .resx">
+      <DependentUpon>TriangleControl .cs</DependentUpon>
+    </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
