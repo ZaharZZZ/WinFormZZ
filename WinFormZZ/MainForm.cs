@@ -15,11 +15,11 @@ using static System.Windows.Forms.MonthCalendar;
 
 namespace WinFormZZ
 {
-    public partial class Form1 : Form
+    public partial class MainForm : Form
     {
         private GeometricFigure currentFigure;
         private UserControl currentControl;
-        public Form1()
+        public MainForm()
         {
             InitializeComponent();
             InitializeComboBox();
@@ -41,7 +41,7 @@ namespace WinFormZZ
             if (currentControl != null)
             {
                 pnlParameters.Controls.Remove(currentControl);
-                currentControl.Dispose();
+                
             }
 
             // Создаем и добавляем новый контрол в зависимости от выбранной фигуры
@@ -67,29 +67,13 @@ namespace WinFormZZ
         }
         private GeometricFigure CreateFigure()
         {
-            switch (cmbFigureType.SelectedItem.ToString())
+            //return currentControl.CreateFigure();
+            if (!(currentControl is IFigureCreator figureCreator))
             {
-                case "Круг":
-                    var circleControl = (CircleControl)currentControl;
-                    return new Circle(circleControl.Radius);
-                case "Прямоугольник":
-                    var rectControl = (RectangleControl)currentControl;
-                    return new RectangleZ(rectControl.Width, rectControl.Height);
-                case "Треугольник":
-                    var triangleControl = (TriangleControl)currentControl;
-                    // Проверка на существование треугольника
-                    double a = triangleControl.SideA;
-                    double b = triangleControl.SideB;
-                    double c = triangleControl.SideC;
-                    if (a + b <= c || a + c <= b || b + c <= a)
-                        throw new ArgumentException("Треугольник с такими сторонами не существует");
-                    return new Triangle1X(a, b, c);
-                case "Квадрат":
-                    var squareControl = (SquareControl)currentControl;
-                    return new Square(squareControl.Side);
-                default:
-                    throw new ArgumentException("Неизвестный тип фигуры");
+                throw new ArgumentException("Контрол не поддерживает создание фигур");
             }
+
+            return figureCreator.CreateFigure();
         }
 
         private void btnCalculate_Click(object sender, EventArgs e)

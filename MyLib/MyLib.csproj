@@ -42,8 +42,8 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="GeometricFigure.cs" />
-    <Compile Include="FileManager.cs" />
     <Compile Include="GeometryCalculator.cs" />
+    <Compile Include="IFigureCreator.cs" />
     <Compile Include="TriangleZ.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

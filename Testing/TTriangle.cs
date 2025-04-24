@@ -9,7 +9,7 @@ namespace Testing
     {
         [TestMethod]
         [DataRow(3, 4, 5, true, DisplayName = "Допустимый треугольник")]
-        [DataRow(1, 1, 3, false, DisplayName = "Недопустимый треугольник - Сумма меньше чем сторона")]
+        [DataRow(1, 1, 3, false, DisplayName = "Недопустимый треугольник - Сумма двух сторон меньше чем третья сторона")]
         [DataRow(0, 1, 1, false, DisplayName = "Недопустимый треугольник - Сторона с длинной 0")]
         [DataRow(-1, 1, 1, false, DisplayName = "Недопустимый треугольник - Отрицательное значение стороны")]
         public void TriangleExists_WithDataRows(double a, double b, double c, bool expected)
@@ -20,7 +20,7 @@ namespace Testing
             // Act
             bool actual = triangle.Exists();
 
-            // Assert
+            
             Assert.AreEqual(expected, actual);
         }
     }

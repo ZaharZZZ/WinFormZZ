@@ -89,5 +89,11 @@
       <DependentUpon>TriangleControl .cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\MyLib\MyLib.csproj">
+      <Project>{031ffa09-95fb-4b5d-b187-ed1d8ca21945}</Project>
+      <Name>MyLib</Name>
+    </ProjectReference>
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

@@ -1,4 +1,5 @@
-﻿using System;
+﻿using MyLib;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -10,7 +11,7 @@ using System.Windows.Forms;
 
 namespace ShapeControl
 {
-    public partial class RectangleControl : UserControl
+    public partial class RectangleControl : UserControl, IFigureCreator
     {
         public RectangleControl()
         {
@@ -40,6 +41,13 @@ namespace ShapeControl
                 throw new ArgumentException("Некорректное значение высоты");
             }
             set { txtHeight.Text = value.ToString(); }
+        }
+        public GeometricFigure CreateFigure()
+        {
+            if (Width <= 0 || Height <= 0)
+                throw new ArgumentException("Ширина и высота должны быть положительными");
+
+            return new RectangleZ(Width, Height);
         }
     }
 }

@@ -7,10 +7,11 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using MyLib;
 
 namespace ShapeControl
 {
-    public partial class TriangleControl : UserControl
+    public partial class TriangleControl : UserControl, IFigureCreator
     {
         public TriangleControl()
         {
@@ -54,6 +55,18 @@ namespace ShapeControl
             set { txtSideC.Text = value.ToString(); }
         }
 
-       
+        public GeometricFigure CreateFigure()
+        {
+            if (SideA <= 0 || SideB <= 0 || SideC <= 0)
+                throw new ArgumentException("Стороны треугольника должны быть положительными");
+
+            if (!IsValidTriangle(SideA, SideB, SideC))
+                throw new ArgumentException("Треугольник с такими сторонами не существует");
+
+            return new Triangle1X(SideA, SideB, SideC);
+        }
+
+        private bool IsValidTriangle(double a, double b, double c)
+            => a + b > c && a + c > b && b + c > a;
     }
 }

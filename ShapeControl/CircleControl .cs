@@ -1,4 +1,5 @@
-﻿using System;
+﻿using MyLib;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -10,7 +11,7 @@ using System.Windows.Forms;
 
 namespace ShapeControl
 {
-    public partial class CircleControl : UserControl
+    public partial class CircleControl : UserControl, IFigureCreator
     {
         public CircleControl()
         {
@@ -28,6 +29,14 @@ namespace ShapeControl
                 throw new ArgumentException("Некорректное значение радиуса");
             }
             set { txtRadius.Text = value.ToString(); }
+        }
+
+        public GeometricFigure CreateFigure()
+        {
+            if (Radius <= 0)
+                throw new ArgumentException("Радиус должен быть положительным");
+
+            return new Circle(Radius);
         }
 
 

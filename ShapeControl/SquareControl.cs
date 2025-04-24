@@ -1,4 +1,5 @@
-﻿using System;
+﻿using MyLib;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -10,7 +11,7 @@ using System.Windows.Forms;
 
 namespace ShapeControl
 {
-    public partial class SquareControl : UserControl
+    public partial class SquareControl : UserControl, IFigureCreator
     {
         public SquareControl()
         {
@@ -28,6 +29,13 @@ namespace ShapeControl
                 throw new ArgumentException("Некорректное значение стороны");
             }
             set { txtSide.Text = value.ToString(); }
+        }
+        public GeometricFigure CreateFigure()
+        {
+            if (Side <= 0)
+                throw new ArgumentException("Сторона квадрата должна быть положительной");
+
+            return new Square(Side);
         }
     }
 }

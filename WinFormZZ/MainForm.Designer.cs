@@ -1,6 +1,6 @@
 ﻿namespace WinFormZZ
 {
-    partial class Form1
+    partial class MainForm
     {
         /// <summary>
         /// Обязательная переменная конструктора.
@@ -54,7 +54,7 @@
             // 
             this.btnCalculate.Location = new System.Drawing.Point(162, 156);
             this.btnCalculate.Name = "btnCalculate";
-            this.btnCalculate.Size = new System.Drawing.Size(324, 30);
+            this.btnCalculate.Size = new System.Drawing.Size(111, 30);
             this.btnCalculate.TabIndex = 7;
             this.btnCalculate.Text = "Вычислить";
             this.btnCalculate.UseVisualStyleBackColor = true;
@@ -132,7 +132,7 @@
             this.pnlParameters.Size = new System.Drawing.Size(324, 123);
             this.pnlParameters.TabIndex = 16;
             // 
-            // Form1
+            // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -148,7 +148,7 @@
             this.MainMenuStrip = this.menuStrip1;
             this.MaximizeBox = false;
             this.MinimizeBox = false;
-            this.Name = "Form1";
+            this.Name = "MainForm";
             this.Text = "Расчёт простейших фигур";
             this.menuStrip1.ResumeLayout(false);
             this.menuStrip1.PerformLayout();
